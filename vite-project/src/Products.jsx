@@ -1,4 +1,7 @@
 import ProductCards from "./ProductCards";
+import { Separator } from "@/components/ui/separator"
+import Tab from "./Tab"
+import {useState} from 'react'
 
 function Product() {
     const products=[
@@ -51,10 +54,43 @@ function Product() {
             image:'/src/assets/product/Soundlink.png',
             description:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo explicabo, est nobis sequi tempore numquam."},
     ]
+
+    const categories=[
+        {id:"All", name:"All"},
+        {id:"1",name:"Headphone"},
+        {id:"2", name:'Earbuds'},
+        {id:"3", name:"Speaker"},
+        {id:"4", name:"Mobile Phone"},
+        {id:"5", name:"Smart Watches"}
+    ]
+
+    const [selectdedCategoryId , setSelectdedCategoryId] = useState("All");
+
+    const filteredProduct=
+        selectdedCategoryId==="All"
+        ? products
+        :products.filter((products) =>  products.categoryId==selectdedCategoryId)
+
+        const handleTabClick=(_id)=>{
+            selectdedCategoryId(_id)
+        }
     return ( 
         <section className="px-8 PY-8 Flex">
             <h2>Our Top Product</h2>
-           
+            <Separator className ="mt-2"/>
+            <div className="mt-4 flex gap-4 items-center">
+                {categories.map((category)=>(
+                    <Tab key ={category.id} 
+                    _id={category.id} 
+                    selectdedCategory={selectdedCategoryId} 
+                    name={category.name}>
+                    selectdedCategoryId={selectdedCategoryId}
+                    
+                    </Tab>
+                ))}
+            </div>
+
+
             <ProductCards products={products}></ProductCards>
              
             

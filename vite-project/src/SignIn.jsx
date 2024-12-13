@@ -12,6 +12,7 @@ function SignIn(props) {
             <a href="/">Sign In</a>
             <a href="/">Sign Up</a>
             </>
+            
           )
       }
 }
