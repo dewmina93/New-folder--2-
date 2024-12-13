@@ -64,15 +64,15 @@ function Product() {
         {id:"5", name:"Smart Watches"}
     ]
 
-    const [selectdedCategoryId , setSelectdedCategoryId] = useState("All");
+    const [selectedCategoryId , setSelectedCategoryId] = useState("All");
 
     const filteredProduct=
-        selectdedCategoryId==="All"
+        selectedCategoryId==="All"
         ? products
-        :products.filter((products) =>  products.categoryId==selectdedCategoryId)
+        :products.filter((products) =>  products.categoryId==selectedCategoryId)
 
         const handleTabClick=(_id)=>{
-            selectdedCategoryId(_id)
+            selectedCategoryId(_id)
         }
     return ( 
         <section className="px-8 PY-8 Flex">
@@ -82,9 +82,9 @@ function Product() {
                 {categories.map((category)=>(
                     <Tab key ={category.id} 
                     _id={category.id} 
-                    selectdedCategory={selectdedCategoryId} 
+                    selectedCategory={selectedCategoryId} 
                     name={category.name}>
-                    selectdedCategoryId={selectdedCategoryId}
+                    selectedCategoryId={selectedCategoryId}
                     
                     </Tab>
                 ))}
