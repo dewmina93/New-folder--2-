@@ -6,18 +6,21 @@ import {useState} from 'react'
 function Product() {
     const products=[
         {id:1,
+        categoryId:1,
         name:"Airpods Max",
         price:500,
         image:'/src/assets/product/airpods-max.png',
         description:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo explicabo, est nobis sequi tempore numquam."},
 
         {   id:2,
+            categoryId:5,
             name:"Apple-watch",
             price:200,
             image:'/src/assets/product/apple-watch.png',
             description:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo explicabo, est nobis sequi tempore numquam."},
 
         {id:3,
+            categoryId:3,
             name:"Echo dot",
             price:80,
             image:'/src/assets/product/echo-dot.png',
@@ -25,30 +28,35 @@ function Product() {
 
 
         {id:4,
+            categoryId:4,
             name:"Iphone 15",
             price:1500,
             image:'/src/assets/product/iphone-15.png',
             description:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo explicabo, est nobis sequi tempore numquam."},
 
         {id:5,
+            categoryId:4,
             name:"Pixel 8",
             price:899,
             image:'/src/assets/product/pixel-8.png',
             description:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo explicabo, est nobis sequi tempore numquam."},
 
         {id:6,
+            categoryId:2,
             name:"Pixel buds",
             price:150,
             image:'/src/assets/product/pixel-buds.png',
             description:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo explicabo, est nobis sequi tempore numquam."},
 
         {id:7,
+            categoryId:1,
             name:"Quietcomfort",
             price:99,
             image:'/src/assets/product/Quietcomfort.png',
             description:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo explicabo, est nobis sequi tempore numquam."},
 
         {id:8,
+            categoryId:3,
             name:"Soundlink",
             price:250,
             image:'/src/assets/product/Soundlink.png',
@@ -72,7 +80,7 @@ function Product() {
         :products.filter((products) =>  products.categoryId==selectedCategoryId)
 
         const handleTabClick=(_id)=>{
-            selectedCategoryId(_id)
+            setSelectedCategoryId(_id)
         }
     return ( 
         <section className="px-8 PY-8 Flex">
@@ -82,16 +90,16 @@ function Product() {
                 {categories.map((category)=>(
                     <Tab key ={category.id} 
                     _id={category.id} 
-                    selectedCategory={selectedCategoryId} 
-                    name={category.name}>
+                    name={category.name} 
                     selectedCategoryId={selectedCategoryId}
-                    
+                    onTabClick={handleTabClick}>
+                   
                     </Tab>
                 ))}
             </div>
 
 
-            <ProductCards products={products}></ProductCards>
+            <ProductCards products={filteredProduct}></ProductCards>
              
             
         </section>
