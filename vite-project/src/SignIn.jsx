@@ -9,8 +9,8 @@ function SignIn(props) {
         default:
           return (
             <>
-            <a href="/signIn">Sign In</a>
-            <a href="/signUp">Sign Up</a>
+            <a href="/">Sign In</a>
+            <a href="/">Sign Up</a>
             </>
             
           )
