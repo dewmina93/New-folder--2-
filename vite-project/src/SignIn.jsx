@@ -1,3 +1,4 @@
+import {Link} from 'react-router';
 function SignIn(props) {
     switch (props.status) {
         case 'signin':
@@ -9,8 +10,9 @@ function SignIn(props) {
         default:
           return (
             <>
-            <a href="/">Sign In</a>
-            <a href="/">Sign Up</a>
+            <Link to="/signIn">Sign In</Link>
+            <Link to="/signUP">Sign Up</Link>
+           
             </>
             
           )
