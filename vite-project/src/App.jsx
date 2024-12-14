@@ -7,7 +7,7 @@ import Products from './Products';
 
 
 function App() {
-  const name="Dewmina";
+  const name=null;
    const count=2
 
   return (

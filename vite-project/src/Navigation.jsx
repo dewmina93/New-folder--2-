@@ -26,7 +26,7 @@ function Navigation(props) {
                     </div>
                     </a>
                 </div>
-               <SignIn name ={name} status={status}></SignIn>
+               <SignIn name ={name} status={status} ></SignIn>
 
             </div>
         </nav>
