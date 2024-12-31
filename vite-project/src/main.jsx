@@ -6,15 +6,17 @@ import { BrowserRouter, Routes, Route } from 'react-router'
 import  HomePage from '../src/Pages/home.page'
 import SignInPage from '../src/Pages/signIn'
 import SignUpPage from '../src/Pages/signUp'
+import Tab from '../src/Tab'
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
+  
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/signIn" element={<SignInPage />} />
         <Route path="/signUp" element={<SignUpPage />} />
+        <Route path="/category/:categoryName" element={<HomePage />} />
       </Routes>
     </BrowserRouter>
-  </StrictMode>,
+
 )

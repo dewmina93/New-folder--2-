@@ -28,8 +28,9 @@ function ProductCard(props) {
                     <p>{props.description} </p>
                 </div>
 
-                <div className="mt-1 p-4 ">
+                <div className="mt-1 p-4  flex justify-between">
                     <Button onClick={handleAdd}>Add to card</Button>
+                    <Button>Buy Now</Button>
                 </div>
             </Card>
         

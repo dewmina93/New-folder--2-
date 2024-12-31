@@ -1,10 +1,13 @@
 
 import Hero from "@/Hero";
 import SignIn from "@/SignIn";
+import React from 'react';
 
 function Navigation(props) {
- const status=""
+ const status="signin"
  const name="Dewmina"
+
+
 
     return ( 
         <nav className="flex items-center justify-between p-8 mx-16">
@@ -20,7 +23,8 @@ function Navigation(props) {
             <div className="flex items-center gap-4 relative">
                 <div>
                     <a href="/" className="flex items-center gap-2 relative ">
-                    <p className="text-lg">{props.count}</p>
+                    <p className="text-lg">{props.cartCount}</p>
+                   
                     <div className="flex items-center gap-2 text-lg">
                         Cart
                     </div>

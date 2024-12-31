@@ -1,18 +1,18 @@
 
 import './App.css'
-import Navigation from '@/Navigation'
+import Navigation from '../src/Navigation.jsx'
 import Hero from '@/Hero'
 import ProductCard from './ProductCard';
 import Products from './Products';
 
 
 function App() {
-  const name=null;
-   const count=2
+  
+   const items=3;
 
   return (
     <>
-      <Navigation name={name} count={count}></Navigation>
+      <Navigation  count={items}></Navigation>
       <Hero></Hero>
       <Products></Products>
     

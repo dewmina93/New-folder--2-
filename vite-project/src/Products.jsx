@@ -2,103 +2,76 @@ import ProductCards from "./ProductCards";
 import { Separator } from "@/components/ui/separator"
 import Tab from "./Tab"
 import {useState} from 'react'
+import {Button} from "@/components/ui/button"
+import {getCategory, getProduct} from "./lib/api.js"
+import { useEffect } from "react";
+import { useParams } from 'react-router';
+
 
 function Product() {
-    const products=[
-        {id:1,
-        categoryId:1,
-        name:"Airpods Max",
-        price:500,
-        image:'/src/assets/product/airpods-max.png',
-        description:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo explicabo, est nobis sequi tempore numquam."},
+   const [products, setProducts] = useState([])
+   const [categories, setCategories] = useState([])
+   const { categoryName } = useParams();
+    
+   
 
-        {   id:2,
-            categoryId:5,
-            name:"Apple-watch",
-            price:200,
-            image:'/src/assets/product/apple-watch.png',
-            description:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo explicabo, est nobis sequi tempore numquam."},
-
-        {id:3,
-            categoryId:3,
-            name:"Echo dot",
-            price:80,
-            image:'/src/assets/product/echo-dot.png',
-            description:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo explicabo, est nobis sequi tempore numquam."},
-
-
-        {id:4,
-            categoryId:4,
-            name:"Iphone 15",
-            price:1500,
-            image:'/src/assets/product/iphone-15.png',
-            description:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo explicabo, est nobis sequi tempore numquam."},
-
-        {id:5,
-            categoryId:4,
-            name:"Pixel 8",
-            price:899,
-            image:'/src/assets/product/pixel-8.png',
-            description:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo explicabo, est nobis sequi tempore numquam."},
-
-        {id:6,
-            categoryId:2,
-            name:"Pixel buds",
-            price:150,
-            image:'/src/assets/product/pixel-buds.png',
-            description:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo explicabo, est nobis sequi tempore numquam."},
-
-        {id:7,
-            categoryId:1,
-            name:"Quietcomfort",
-            price:99,
-            image:'/src/assets/product/Quietcomfort.png',
-            description:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo explicabo, est nobis sequi tempore numquam."},
-
-        {id:8,
-            categoryId:3,
-            name:"Soundlink",
-            price:250,
-            image:'/src/assets/product/Soundlink.png',
-            description:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo explicabo, est nobis sequi tempore numquam."},
-    ]
-
-    const categories=[
-        {id:"All", name:"All"},
-        {id:"1",name:"Headphone"},
-        {id:"2", name:'Earbuds'},
-        {id:"3", name:"Speaker"},
-        {id:"4", name:"Mobile Phone"},
-        {id:"5", name:"Smart Watches"}
-    ]
-
-    const [selectedCategoryId , setSelectedCategoryId] = useState("All");
+    const [selectedCategoryId , setSelectedCategoryId] = useState("676e0f257ea7e4c41c4d89e2");
 
     const filteredProduct=
-        selectedCategoryId==="All"
+        selectedCategoryId==="676e0f257ea7e4c41c4d89e2"
         ? products
-        :products.filter((products) =>  products.categoryId==selectedCategoryId)
+        :products.filter((products) => {return products.categoryId===selectedCategoryId
+            
+        } )
 
         const handleTabClick=(_id)=>{
             setSelectedCategoryId(_id)
+            console.log(_id)
         }
+
+        useEffect(()=>{
+            getProduct().then((data)=>{
+                setProducts(data)
+                console.log(data)
+            }).catch((err)=>{
+                console.log(err)
+            })
+        },[])
+
+        useEffect(()=>{
+            getCategory().then((data)=>{
+                setCategories(data)
+                console.log(data)
+            }).catch((err)=>{
+                console.log(err)
+            })
+        },[])
+
+        useEffect(() => {
+            if (categoryName) {
+                const category = categories.find(cat => cat.name === categoryName);
+                if (category) {
+                    setSelectedCategoryId(category._id);
+                }
+            }
+        }, [categoryName, categories]);
+        
     return ( 
         <section className="px-8 PY-8 Flex">
             <h2>Our Top Product</h2>
+            
             <Separator className ="mt-2"/>
             <div className="mt-4 flex gap-4 items-center">
-                {categories.map((category)=>(
-                    <Tab key ={category.id} 
-                    _id={category.id} 
-                    name={category.name} 
-                    selectedCategoryId={selectedCategoryId}
+                {categories.map((categories)=>(
+                    <Tab key ={categories._id} 
+                    _id={categories._id} 
+                    name={categories.name} 
+                    selectedCategoryId1={selectedCategoryId}
                     onTabClick={handleTabClick}>
                    
                     </Tab>
                 ))}
             </div>
-
-
             <ProductCards products={filteredProduct}></ProductCards>
              
             
